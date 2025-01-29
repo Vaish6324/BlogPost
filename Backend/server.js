@@ -7,7 +7,14 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: "https://blogpostfrontend-mauve.vercel.app",  // Allow only your frontend
+  methods: "GET,POST",
+  allowedHeaders: "Content-Type",
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 // Basic route for testing

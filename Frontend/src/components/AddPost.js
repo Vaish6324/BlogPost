@@ -11,20 +11,24 @@ const AddPost = ({ onPostAdded }) => {
     const newPost = { title, image, description };
 
     try {
-      const response = await fetch("http://localhost:5000/api/posts", {
+      const response = await fetch("https://blogpostbackend-rose.vercel.app/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPost),
       });
 
       if (response.ok) {
-        onPostAdded();
+        alert("🎉 Post added successfully!");  // ✅ Show success alert
+        onPostAdded(); // Refresh the post list
         setTitle("");
         setImage("");
         setDescription("");
+      } else {
+        alert("❌ Failed to add post. Please try again!");  // ✅ Show failure alert
       }
     } catch (error) {
       console.error("Error adding post:", error);
+      alert("⚠️ An error occurred. Check the console for details.");
     }
   };
 
